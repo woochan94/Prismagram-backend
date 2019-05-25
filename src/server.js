@@ -1,24 +1,17 @@
 import dotenv from "dotenv"; 
 import { GraphQLServer } from "graphql-yoga";
+import logger from "morgan";
+import schema from "./schema";
 
 dotenv.config();
 
 const PORT = process.env.PORT || 4000;
 
-const typeDefs = `
-    type Query {
-        hello: String!
-    }
-`;
+const server = new GraphQLServer({ schema });
 
-const resolvers = {
-    Query: {
-        hello : () => "Hi"
-    }
-}
-
-const server = new GraphQLServer({ typeDefs, resolvers })
+// GraphQLServer에는 express 서버가 내장되어 있다. 
+server.express.use(logger("dev"));
 
 server.start({ port: PORT }, () =>
-    console.log(`Server running on http://localhost:${PORT}`)
+    console.log(`✅  Server running on http://localhost:${PORT}`)
 );
