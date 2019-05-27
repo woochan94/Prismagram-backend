@@ -1,8 +1,6 @@
 import "./env";
 import { GraphQLServer } from "graphql-yoga";
-import { prisma } from "../generated/prisma-client";
 import logger from "morgan";
-import passport from "passport"; 
 import schema from "./schema";
 import "./passport"; 
 import { authenticateJwt } from "./passport";
@@ -10,7 +8,7 @@ import { authenticateJwt } from "./passport";
 const PORT = process.env.PORT || 4000;
 
 // context는 resolver 사이에서 정보를 공유할 때 사용 
-const server = new GraphQLServer({ schema, context: (request) => ({request})
+const server = new GraphQLServer({ schema, context: ({request}) => ({request})
 });
 
 // GraphQLServer에는 express 서버가 내장되어 있다. 
