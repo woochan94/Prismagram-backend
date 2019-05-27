@@ -1,10 +1,7 @@
-import dotenv from "dotenv"; 
-import path from "path"; 
-dotenv.config({path: path.resolve(__dirname, ".env")});
-
 import { adjectives, nouns } from "./words";
 import nodemailer from "nodemailer";
 import sgTransport from "nodemailer-sendgrid-transport"; 
+import jwt from "jsonwebtoken";
 
 // 비밀값을 생성할 함수 
 export const secretGenerator = () => {
@@ -29,7 +26,10 @@ export const sendSecretMail = (address, secret) => {
         from: "woochan@prismagram.com", 
         to: address, 
         subject: "Login Secret for Prismagram  🔒",
-        html: `Hello! Your login secret is ${secret}.<br/> Copy paste on the app/website to Log in`
+        html: `Hello! Your login secret is <strong>${secret}</strong>.<br/> Copy paste on the app/website to Log in`
     };
     return sendMail(email);
 }
+
+// passport- JWT token 생성 함수 
+export const generateToken = (id) => jwt.sign({ id }, process.env.JWT_SECRET); 
