@@ -10,7 +10,6 @@ export default {
         isFollowing: async (parent, __, { request }) => {
             const { user } = request; // 요청 계정의 아이디 
             const { id: parentId } = parent; // 현재 로그인한 계정의 아이디
-            console.log(user, parentId);
             try {
                 const exists = await prisma.$exists.user({ 
                     AND: [
@@ -27,6 +26,24 @@ export default {
             const { user } = request; 
             const { id: ParentId } = parent; 
             return user.id === ParentId; 
+        }
+    },
+    Post: {
+        isLiked: async (parent, __, { request }) => {
+            const { user } = request; 
+            const { id } = parent; 
+            // like 테이블? 에서 parent로 가져온 postId와 저장된 postId를 비교하고
+            // request에서 가져온 userid와 저장된 user의 id를 비교하여 좋아요 유무 판별 
+            return prisma.$exists.like({
+                AND: [
+                    { user: {
+                        id: user.id
+                    }}, 
+                    { post: {
+                        id
+                    }}
+                ]
+            }); 
         }
     }
 };
