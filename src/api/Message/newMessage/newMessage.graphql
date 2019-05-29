@@ -1,0 +1,5 @@
+# 실시간 작업을 할 수 있도록 도와줌 
+# subscription이 정상적으로 실행되면 Listening 상태가 됨 
+type Subscription {
+    newMessage(roomId: String!): Message
+}
