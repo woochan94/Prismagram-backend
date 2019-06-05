@@ -10,6 +10,7 @@ type User {
   posts: [Post!]!
   likes: [Like!]!
   comments: [Comment!]!
+  rooms: [Room!]!
   createdAt: DateTime @createdAt 
   updatedAt: DateTime @updatedAt  
 }
@@ -49,4 +50,22 @@ type File {
   post: Post!
   createdAt: DateTime @createdAt 
   updatedAt: DateTime @updatedAt  
+}
+
+type Room {
+  id: ID! @id
+  participants: [User!]! 
+  messages: [Message!]!
+  createdAt: DateTime @createdAt 
+  updatedAt: DateTime @updatedAt
+}
+
+type Message {
+  id: ID! @id
+  text: String!
+  from: User! @relation(name: "From")
+  to: User! @relation(name: "To")
+  room: Room!
+  createdAt: DateTime @createdAt 
+  updatedAt: DateTime @updatedAt
 }
