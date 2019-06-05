@@ -11,7 +11,7 @@ type User {
   likes: [Like!]!
   comments: [Comment!]!
   rooms: [Room!]!
-  loginSecret: String!
+  loginSecret: String
   createdAt: DateTime @createdAt 
   updatedAt: DateTime @updatedAt  
 }
