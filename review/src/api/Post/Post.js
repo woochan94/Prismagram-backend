@@ -30,6 +30,7 @@ export default {
             } catch {
                 return false; 
             }
-        }
+        },
+        files: ({ id }) => prisma.post({ id }).files()
     }
 }
