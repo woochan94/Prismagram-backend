@@ -25,6 +25,7 @@ type Post {
   user: User!
   files: [File!]!
   likes: [Like!]!
+  likeCount: Int!
   comments: [Comment!]!
   createdAt: DateTime
   updatedAt: DateTime 
