@@ -6,9 +6,11 @@ type User {
   email: String!
   firstName: String
   lastName: String
+  fullName: String
   bio: String
   following: [User!]! 
   followers: [User!]! 
+  amIFollowing: Boolean!
   posts: [Post!]!
   likes: [Like!]!
   comments: [Comment!]!
@@ -25,6 +27,7 @@ type Post {
   user: User!
   files: [File!]!
   likes: [Like!]!
+  isLiked: Boolean!
   likeCount: Int!
   comments: [Comment!]!
   createdAt: DateTime
