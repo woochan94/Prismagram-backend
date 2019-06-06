@@ -8,6 +8,28 @@ export default {
             where: {
                 post: { id: parent.id }
             }
-        }).aggregate().count()
+        }).aggregate().count(),
+        isLiked: (parent, _, { request }) => {
+            const { user } = request; 
+            const { id: parentId } = parent; 
+            try {
+                return prisma.$exists.like({
+                    AND: [
+                        {
+                            user: {
+                                id: user.id
+                            }
+                        }, 
+                        {
+                            post: {
+                                id: parentId
+                            }   
+                        }
+                    ]
+                })
+            } catch {
+                return false; 
+            }
+        }
     }
 }
