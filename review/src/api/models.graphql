@@ -1,25 +1,28 @@
 scalar DateTime
 
 type User {
-  id: ID! 
-  username: String! 
-  email: String!
+  id: ID!
   avatar: String
+  username: String!
+  email: String!
   firstName: String
   lastName: String
   fullName: String
-  bio: String
-  following: [User!]! 
-  followers: [User!]! 
   isFollowing: Boolean!
   isSelf: Boolean!
+  bio: String
+  following: [User!]!
+  followingCount: Int!
+  followers: [User!]!
+  followersCount: Int!
   posts: [Post!]!
+  postsCount: Int!
   likes: [Like!]!
   comments: [Comment!]!
   rooms: [Room!]!
   loginSecret: String!
-  createdAt: DateTime 
-  updatedAt: DateTime
+  createdAt: DateTime
+  updatedAt: DateTime 
 }
 
 type Post {
@@ -29,9 +32,10 @@ type Post {
   user: User!
   files: [File!]!
   likes: [Like!]!
+  comments: [Comment!]!
   isLiked: Boolean!
   likeCount: Int!
-  comments: [Comment!]!
+  commentCount: Int!
   createdAt: DateTime
   updatedAt: DateTime 
 }
@@ -40,7 +44,7 @@ type Like {
   id: ID!
   user: User!
   post: Post!
-  createdAt: DateTime 
+  createdAt: DateTime
   updatedAt: DateTime 
 }
 
@@ -54,19 +58,19 @@ type Comment {
 }
 
 type File {
-  id: ID! 
+  id: ID!
   url: String!
   post: Post!
-  createdAt: DateTime 
+  createdAt: DateTime
   updatedAt: DateTime 
 }
 
 type Room {
-  id: ID! 
-  participants: [User!]! 
+  id: ID!
+  participants: [User!]!
   messages: [Message!]!
   createdAt: DateTime
-  updatedAt: DateTime
+  updatedAt: DateTime 
 }
 
 type Message {
