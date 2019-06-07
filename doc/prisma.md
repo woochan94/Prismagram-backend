@@ -2,6 +2,13 @@
 
 <br>
 
+## prisma 
+
+> prisma는 ORM(Object-relational mapping)이다. <br>
+> prisma는 데이터베이스 관련한 어려운 문제들을 해결해 준다. prisma는 어플리케이션에 필요한 모델을 graphql로 정의할 수 있다. 
+
+<br>
+
 ## 시작하기 
 
 ### 1. [Prisma] 회원 가입 및 로그인 
