@@ -3,6 +3,7 @@ import { prisma } from "../../../generated/prisma-client";
 export default {
     User: {
         posts: ({ id }) => prisma.user({ id }).posts(), 
+        rooms: ({ id }) => prisma.user({ id }).rooms(),
         fullName: (parent) => {
             return `${parent.firstName} ${parent.lastName}`;
         },
